@@ -2,11 +2,19 @@ import React from 'react'
 import { DarkModeOutlined, LightModeOutlined, Menu as MenuIcon, Search, SettingsOutlined, ArrowDropDownOutlined } from '@mui/icons-material'
 import FlexBetween from 'styleComponents/FlexBetween'
 import { useDispatch } from 'react-redux'
-import { setMode } from 'state'
+import { setMode } from 'state/modeSlice'
+import AccountMenu from './accountmenu';
+import { useSelector } from 'react-redux';
+import { logout } from 'state/userSlice'
 import { useTheme, AppBar, Toolbar, IconButton, InputBase } from '@mui/material'
 const Navbar = ({isSidebarOpen, setSidebarOpen}) => {
+    const {user} = useSelector(state=> state.userState);
     const dispatch = useDispatch();
     const theme = useTheme()
+    async function handleLogout(){
+            // dispatch(logout());
+            logout();
+    }
 
   return (
     <AppBar sx={{ position: 'static', background: 'none', boxShadow: 'none'}}>
@@ -32,6 +40,9 @@ const Navbar = ({isSidebarOpen, setSidebarOpen}) => {
                 <IconButton>
                     <SettingsOutlined sx={{fontSize: '25px'}} />
                 </IconButton>
+                {/* <IconButton> */}
+                    <AccountMenu />
+                {/* </IconButton> */}
 
             </FlexBetween>
 

@@ -15,6 +15,28 @@ export const tokensDark = {
       1000: "#000000", // manually adjusted
     },
     primary: {
+      // DEFAULT: '#87CEEB',
+      // 50: '#FFFFFF',
+      // 100: '#FFFFFF',
+      // 200: '#F0F9FC',
+      // 300: '#CDEBF7',
+      // 400: '#AADCF1',
+      // 500: '#87CEEB',
+      // 600: '#57BAE3',
+      // 700: '#27A7DB',
+      // 800: '#1D83AD',
+      // 900: '#155F7D'
+      // DEFAULT: '#87CEEB',
+      // 50: '#FFFFFF',
+      // 100: '#FFFFFF',
+      // 200: '#F0F9FC',
+      // 300: '#CDEBF7',
+      // 400: '#AADCF1',
+      // 500: '#87CEEB',
+      // 600: '#57BAE3',
+      // 700: '#27A7DB',
+      // 800: '#1D83AD',
+      // 900: '#155F7D'
       // blue
       100: "#d3d4de",
       200: "#a6a9be",
@@ -27,6 +49,17 @@ export const tokensDark = {
       900: "#070812",
     },
     secondary: {
+      // DEFAULT: '#87CEEB',
+      // 50: '#FFFFFF',
+      // 100: '#FFFFFF',
+      // 200: '#F0F9FC',
+      // 300: '#CDEBF7',
+      // 400: '#AADCF1',
+      // 500: '#87CEEB',
+      // 600: '#57BAE3',
+      // 700: '#27A7DB',
+      // 800: '#1D83AD',
+      // 900: '#155F7D'
       // yellow
       50: "#f0f0f0", // manually adjusted
       100: "#fff6e0",

@@ -2,33 +2,33 @@ import React, {useState, useEffect} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FlexBetween from 'styleComponents/FlexBetween'
 import { Box, Divider, IconButton, Drawer, List, ListItem, ListItemButton, lostItemIcon, ListItemText, Typography, useTheme, ListItemIcon } from '@mui/material'
-import { SettingsOutlined, ChevronLeft, ChevronRightOutlined, HomeOutlined, ShoppingCartOutlined, Groups2Outlined, ReceiptLongOutlined, PublicOutlined, PointOfSaleOutlined, TodayOutlined, CalendarMonthOutlined, AdminPanelSettingsOutlined, TrendingOutlined, PieChartOutlined, TrendingUpOutlined } from '@mui/icons-material'
-
+import { SettingsOutlined, ChevronLeft, ChevronRightOutlined, HomeOutlined, ShoppingCartOutlined, Groups2Outlined, ReceiptLongOutlined, PublicOutlined, PointOfSaleOutlined, TodayOutlined, CalendarMonthOutlined, AdminPanelSettingsOutlined, TrendingOutlined, PieChartOutlined, TrendingUpOutlined } from '@mui/icons-material';
+import {BiMessageSquareEdit} from 'react-icons/bi';
 const navItems = [
     {
       text: 'Dashboard',
       icon: <HomeOutlined />
     },
+    // {
+    //     text: 'ClientFacing',
+    //     icon: null
+    //   },
     {
-        text: 'ClientFacing',
-        icon: null
-      },
+      text: "MessageTemplates",
+      icon: <BiMessageSquareEdit />
+    },
       {
-        text: 'Products',
-        icon: <ShoppingCartOutlined />
-      },
-      {
-        text: 'Customers',
+        text: 'followuptemplates',
         icon: <Groups2Outlined />
       },
-      {
-        text: 'Transactions',
-        icon: <ReceiptLongOutlined />
-      },
-      {
-        text: 'Geography',
-        icon: <PublicOutlined/>
-      },
+      // {
+      //   text: 'Transactions',
+      //   icon: <ReceiptLongOutlined />
+      // },
+      // {
+      //   text: 'Geography',
+      //   icon: <PublicOutlined/>
+      // },
       {
         text: 'Sales',
         icon: null
