@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import Event from './event';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -92,21 +93,7 @@ export default function FollowTemplateModalCreate({setMessageTemplates}) {
                 <Typography variant="h6" fontWeight="bold">Actions</Typography>
                 <Box sx={{width: "100%", margin: 1}} >
                   {events.map((ev, index)=> {
-                    return (
-                      <Box sx={{backgroundColor: theme.palette.background.alt,padding: 2,margin: 1, display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-                      <Box>
-                        <Typography>{ev.name}</Typography>
-                      </Box>
-                      <Box>
-                      <Typography>Set Interval</Typography>
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-              
-                         <TimePicker />
-                         </LocalizationProvider>
-                      </Box>
-                    
-                  </Box>
-                    )
+                    return <Event ev={ev} />
                   })}
                 </Box>
             <ChildModal setEvents={setEvents} />
