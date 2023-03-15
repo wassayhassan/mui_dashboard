@@ -10,11 +10,7 @@ import { useTheme, AppBar, Toolbar, IconButton, InputBase } from '@mui/material'
 const Navbar = ({isSidebarOpen, setSidebarOpen}) => {
     const {user} = useSelector(state=> state.userState);
     const dispatch = useDispatch();
-    const theme = useTheme()
-    async function handleLogout(){
-            // dispatch(logout());
-            logout();
-    }
+    const theme = useTheme();
 
   return (
     <AppBar sx={{ position: 'static', background: 'none', boxShadow: 'none'}}>

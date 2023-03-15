@@ -25,7 +25,7 @@ export default function MessageTemplateModalCreate({setMessageTemplates}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [formValues, setFormValues] = useState({name: "", text: "", createdBy: user._id});
+  const [formValues, setFormValues] = useState({name: "", text: "", createdBy: user?._id});
 
 
   async function handleFormValueChange(e){
