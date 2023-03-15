@@ -16,6 +16,7 @@ import {Alert} from "@mui/material";
 
 export const LoginPage = () => {
      const {user, logged_in, errorMessage} = useSelector(state=> state.userState);
+     const [validationError, setValidateError] = useState('');
     const [formValues, setFormVlaues] = useState({email: "", password: ""});
     const theme = useTheme();
     const dispatch = useDispatch();
@@ -26,11 +27,14 @@ export const LoginPage = () => {
     async function handleValueChange(e){
         let name = e.target.name;
         let value = e.target.value;
-        console.log(name);
-        console.log(value)
         setFormVlaues(pre => ({...pre, [name]: value}))
     }
     async function handleLogin(){
+        if(formValues.email.length <= 7){
+           setValidateError("Enter a valid Email Address");
+           return;
+        }
+        setValidateError("");
         let data = await dispatch(login(formValues));
         if(data.payload._id.length > 5){
           navigate("/");
@@ -48,7 +52,7 @@ export const LoginPage = () => {
                    <Typography variant="h4" sx={{color: "black", fontWeight: "bold"}}>Welcome back!</Typography>
                </Box>
                <Box sx={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
-                {errorMessage && <Alert sx={{width: "18rem", marginTop: 2}} severity="error">{errorMessage}</Alert>}
+                {(errorMessage || validationError.length > 1) && <Alert sx={{width: "18rem", marginTop: 2}} severity="error">{errorMessage ||validationError}</Alert>}
                
                </Box>
                <Box sx={{margin: 2, marginTop: 5, display: "flex", flexDirection: "row", justifyContent: "center"}}>

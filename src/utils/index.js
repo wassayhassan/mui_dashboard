@@ -42,3 +42,43 @@ export const searchMessageTemplates = async(val) => {
     return err;
   }
 }
+export const createFollowUp = async(data) => {
+  try{
+    let res = await axios.post(SERVER_BASE_URL+"followuptemplates", data);
+    return res;
+  }catch(err){
+    return err;
+  }
+}
+export const getFollowUpById = async(id) => {
+  try{
+    let res = await axios.get(SERVER_BASE_URL+`followuptemplates/${id}`);
+    return res;
+  }catch(err){
+    return err;
+  }
+}
+export const getAllFollowups = async() => {
+  try{
+   let res = await axios.get(SERVER_BASE_URL+"followuptemplates");
+   return res;
+  }catch(err){
+    return err;
+  }
+}
+export const editFollowUp = async(id, data)=> {
+  try{
+    let res = await axios.put(SERVER_BASE_URL+`followuptemplates/${id}`, data);
+    return res;
+  }catch(err){
+    return err;
+  }
+}
+export const deleteFollowUp = async(id) => {
+  try{
+     let res= await axios.delete(SERVER_BASE_URL+`followuptemplates/${id}`);
+     return res;
+  }catch(err){
+    return err;
+  }
+}

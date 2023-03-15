@@ -29,40 +29,40 @@ const navItems = [
       //   text: 'Geography',
       //   icon: <PublicOutlined/>
       // },
-      {
-        text: 'Sales',
-        icon: null
-      },
-      {
-        text: 'Overview',
-        icon: <PointOfSaleOutlined />
-      },
-      {
-        text: 'Daily',
-        icon: <TodayOutlined />
-      },
-      {
-        text: 'Monthly',
-        icon: <CalendarMonthOutlined />
-      },
-      {
-        text: 'Breakdown',
-        icon: <PieChartOutlined/>
-      },
-      {
-        text: 'Management',
-        icon: null
-      },
+      // {
+      //   text: 'Sales',
+      //   icon: null
+      // },
+      // {
+      //   text: 'Overview',
+      //   icon: <PointOfSaleOutlined />
+      // },
+      // {
+      //   text: 'Daily',
+      //   icon: <TodayOutlined />
+      // },
+      // {
+      //   text: 'Monthly',
+      //   icon: <CalendarMonthOutlined />
+      // },
+      // {
+      //   text: 'Breakdown',
+      //   icon: <PieChartOutlined/>
+      // },
+      // {
+      //   text: 'Management',
+      //   icon: null
+      // },
 
-      {
-        text: 'Admin',
-        icon: <AdminPanelSettingsOutlined />
-      },
+      // {
+      //   text: 'Admin',
+      //   icon: <AdminPanelSettingsOutlined />
+      // },
       
-      {
-        text: 'Performance',
-        icon: <TrendingUpOutlined/>
-      },
+      // {
+      //   text: 'Performance',
+      //   icon: <TrendingUpOutlined/>
+      // },
 
     
 ]

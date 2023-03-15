@@ -11,8 +11,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { createFollowUp, searchMessageTemplates } from 'utils';
+import { createFollowUp, searchMessageTemplates, getFollowUpById, editFollowUp } from 'utils';
 import Event from './event';
+import { useEffect } from 'react';
+import EditEvent from './editEvents';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -28,14 +30,31 @@ const style = {
   p: 2,
 };
 
-export default function FollowTemplateModalCreate({setFollowupTemplates}) {
+export default function FollowTemplateModalEdit({setFollowupTemplates, followupTemplates, id }) {
     const {user} = useSelector((state)=> state.userState);
   const theme = useTheme();
-  const [events, setEvents] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [formValues, setFormValues] = useState({name: "", createdBy: user?._id});
+  const [formValues, setFormValues] = useState({});
+
+  async function getfollowData(){
+    let res = await getFollowUpById(id);
+    console.log(res);
+    if(res.status === 200){
+        setFormValues(res.data);
+    }
+  }
+
+  React.useEffect(()=>  {
+    getfollowData();
+  }, [])
+  useEffect(()=> {
+     console.log(formValues)
+  }, [formValues])
+//   async function addEvent(data){
+//      setFormValues(()=> ({...data}));
+//   }
 
 
   async function handleFormValueChange(e){
@@ -44,12 +63,12 @@ export default function FollowTemplateModalCreate({setFollowupTemplates}) {
      setFormValues((pre)=> ({...pre, [name]: value}))
   }
   async function handleSave(){
-    if(formValues.name.length > 0 && events.length > 0){
-      let dat = {...formValues, events: events};
-      console.log(dat);
-        let res = await createFollowUp(dat);
+    if(formValues.name.length > 0 && formValues.events.length > 0){
+    //   let dat = {...formValues, events: events};
+    //   console.log(dat);
+        let res = await editFollowUp(formValues._id,formValues);
         console.log(res);
-        setFollowupTemplates((pre)=> [...pre, dat]);
+        // setFollowupTemplates((pre)=> [...pre, dat]);
         // console.log(res);
         // if(res.status === 200){
         //     setFollowupTemplates(pre=> [...pre, res.data]);
@@ -61,7 +80,10 @@ export default function FollowTemplateModalCreate({setFollowupTemplates}) {
 
   return (
     <div>
-     <FiEdit onClick={handleOpen} className='cursor-pointer m-2' size="1.5rem" />
+        <IconButton>
+        <FiEdit onClick={handleOpen} className='cursor-pointer m-2' size="1.5rem" />
+        </IconButton>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -70,7 +92,7 @@ export default function FollowTemplateModalCreate({setFollowupTemplates}) {
       >
         <Box sx={style}>
           <Box>
-             <Typography sx={{fontWeight: "bold", fontSize:"1.3em"}}>Create Follow Up</Typography>
+             <Typography sx={{fontWeight: "bold", fontSize:"1.3em"}}>Edit Follow Up</Typography>
           </Box>
           <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", marginTop: 2}}>
             <Box sx={{width: "100%", margin: 1}} >
@@ -85,11 +107,11 @@ export default function FollowTemplateModalCreate({setFollowupTemplates}) {
           <Box sx={{margin: 1}}>
                 <Typography variant="h6" fontWeight="bold">Actions</Typography>
                 <Box sx={{width: "100%", margin: 1}} >
-                  {events.map((ev, index)=> {
-                    return <Event ev={ev} events={events} setEvents={setEvents} />
+                  {formValues?.events?.map((ev, index)=> {
+                    return <EditEvent ev={ev} formValues={formValues} setFormValues={setFormValues} />
                   })}
                 </Box>
-            <ChildModal setEvents={setEvents} />
+            <ChildModal setFormValues={setFormValues} formValues={formValues} />
         </Box>
           <Box sx={{display: "flex", flexDirection: "row", justifyContent: "flex-end", padding: 2}}>
           <Box sx={{margin: 1}}>
@@ -108,7 +130,7 @@ export default function FollowTemplateModalCreate({setFollowupTemplates}) {
   );
 }
 
-function ChildModal({setEvents}) {
+function ChildModal({setFormValues, formValues}) {
     const [searchval, setSearchVal] = useState('');
     const [open, setOpen] = React.useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState({});
@@ -135,10 +157,18 @@ function ChildModal({setEvents}) {
             setTemplates(res.data);
         }
     }
+    useEffect(()=> {
+      console.log(formValues)
+    }, [formValues])
     async function handleInsert() {
         let id = uuidv4();
-         setEvents((pre)=> [...pre, {id, ...selectedTemplate,interval: "00:00:00:00"}])
-        //  setSelectedTemplate(null);
+              console.log(formValues)
+              let dat = formValues;
+              let newEvens = formValues.events;
+              newEvens = [...newEvens, {id, ...selectedTemplate,interval: "00:00:00:00"}]; 
+             dat.events = newEvens;
+             setFormValues({...dat});
+
          handleClose();
 
     }
@@ -162,7 +192,6 @@ function ChildModal({setEvents}) {
                     </IconButton>
 
                 </FlexBetween>
-                {/* <TextField sx={{width: 300}}  /> */}
             </Box>
         
             <Box>

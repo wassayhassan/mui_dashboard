@@ -24,7 +24,7 @@ const MessageTemplates = () => {
     return (
         <Box sx={{display: "flex", flexDirection: "column", padding: 4, width: "100%"}}>
             <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", marginBottom: 2}}>
-                <Typography variant="h3">Message Templates</Typography>
+                <Typography variant="h3" color={theme.palette.secondary[200]}>Message Templates</Typography>
                 <MessageTemplateModalCreate setMessageTemplates={setMessageTemplates} />
                {/* <Button sx={{backgroundColor: theme.palette.secondary[300],marginLeft: 2, ":hover": {backgroundColor: theme.palette.secondary[200]}}}>Create New Template</Button> */}
             </Box>

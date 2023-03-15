@@ -30,6 +30,7 @@ export const userSlice = createSlice({
             state.logged_in = false;
             state.errorMessage = "";
             state.loading = false;
+            localStorage.removeItem("user");
         }
     },
     extraReducers: (builder)=> {
